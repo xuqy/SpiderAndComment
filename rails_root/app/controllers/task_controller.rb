@@ -1,3 +1,6 @@
+require 'uri'
+require 'open-uri'
+
 class TaskController < ApplicationController
   def create
     @task = Task.new
@@ -26,10 +29,10 @@ class TaskController < ApplicationController
       urls_found = {seed_url}
       while !queue.empty and download_count < number do
         url = queue.shift
-        // download 'url'
-        page = Page.new :url => url, :html => '', :size = ''
+        html = open(url).read
+        page = Page.new :url => url, :html => html, :size = html.size
         task.pages << page
-        urls_found_in_this_page = ()
+        urls_found_in_this_page = URI.extract(html)
         for url_found in urls_found_in_this_page do 
           next if urls_found{url_found}
           urls_found{url_found} = 1
