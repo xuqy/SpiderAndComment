@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  seed_url: MyString
+  number: 1
+  charset: MyString
+
+two:
+  seed_url: MyString
+  number: 1
+  charset: MyString
